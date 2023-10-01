@@ -69,17 +69,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  bool fff(){
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEEEFF5),
       body: SafeArea(
-        child: isLoading == true ? Center(child: CircularProgressIndicator(),) : Container(
-          padding: EdgeInsets.symmetric(horizontal: 32, vertical: 0),
+        child: isLoading == true ? Center(child: CircularProgressIndicator(),) : Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32,),
           child: ListView(
             children: [
               SizedBox(height: 60,),
@@ -137,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                               trailing: Checkbox(
                                 onChanged: (value) => checkBoxChanged(value, i),
                                 value: tasks[i]["is_completed"] == 1 ? true : false,
-                                fillColor: MaterialStateProperty.all<Color>(Color(0xFFDA4040)),
+                                activeColor: Color(0xFFDA4040),
                               ),
                             ),
                           ],

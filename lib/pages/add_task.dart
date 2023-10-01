@@ -69,6 +69,30 @@ class _AddTaskState extends State<AddTask> {
                       ),
                       SizedBox(height: 30,),
                       TextFormField(
+                        readOnly: true,
+                        onTap: () async {
+                          DateTime? pickdate = await showDatePicker(
+                            builder: (context, child){
+                              return Theme(
+                                data: Theme.of(context).copyWith(
+                                  colorScheme: ColorScheme.light(
+                                    primary: Color(0xFFDA4040),
+                                    onPrimary: Colors.white,
+                                    onSurface: Color(0xFFDA4040),
+                                  ),
+                                ),
+                                child: child!,
+                              );
+                            },
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(3000),
+                          );
+                          if(pickdate != null){
+                            date.text = "${pickdate.year}-${pickdate.month.toString().padLeft(2, '0')}-${pickdate.day.toString().padLeft(2, '0')}";
+                          }
+                        },
                         controller: date,
                         decoration: InputDecoration(
                           labelText: "Task Date",
@@ -84,7 +108,6 @@ class _AddTaskState extends State<AddTask> {
                           ),
                         ),
                         cursorColor: Colors.grey[700],
-                        textCapitalization: TextCapitalization.sentences,
                       ),
                       SizedBox(height: 30,),
                       DropdownButtonFormField(
